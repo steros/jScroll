@@ -42,9 +42,14 @@
 			var locator = new location($element);
 			
 			$window.scroll(function() {
-				$element
-					.stop()
-					.animate(locator.getMargin($window), opts.speed);
+				if(true == animate) {
+					$element
+						.stop()
+						.animate(locator.getMargin($window), opts.speed);
+				} else {
+					$element
+						.css(locator.getMargin($window));
+				}
 			});
         });
 		
@@ -74,7 +79,8 @@
     // Public: Default values
     $.fn.jScroll.defaults = {
         speed	:	"slow",
-		top		:	10
+	top	:	10,
+	animate	:	true
     };
 
 })(jQuery);
